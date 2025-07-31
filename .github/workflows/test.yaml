@@ -1,0 +1,22 @@
+---
+name: RustTest
+
+on:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate coverage.json file
+        run: |
+          cargo install cargo-llvm-cov
+          cargo llvm-cov --json > coverage.json
+
+      - name: Update coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage.json
+          path: coverage.json
