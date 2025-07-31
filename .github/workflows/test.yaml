@@ -13,6 +13,7 @@ jobs:
       - name: Generate coverage.json file
         run: |
           cargo install cargo-llvm-cov
+          cargo test
           cargo llvm-cov --json > coverage.json
 
       - name: Update coverage artifact
